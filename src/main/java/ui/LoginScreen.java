@@ -24,7 +24,7 @@ public class LoginScreen extends JFrame {
 
         // Create header panel with title and logo
         JPanel headerPanel = new JPanel(new FlowLayout());
-        JLabel titleLabel = new JLabel("My Application");
+        JLabel titleLabel = new JLabel("HealthCare App");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         headerPanel.add(titleLabel);
         ImageIcon logo = new ImageIcon("logo.png");
