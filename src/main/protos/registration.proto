@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package registration;
+
+message Patient {
+  string name = 1;
+  string email = 2;
+  string phone_number = 3;
+  string address = 4;
+  string date_of_birth = 5;
+  string gender = 6;
+  float height = 7;
+  float weight = 8;
+  string blood_type = 9;
+  bool organ_donor = 10;
+  string medical_history = 11;
+  string photo = 12;
+  string password = 13;
+  int32 id = 14;
+}
+
+message Doctor {
+  string name = 1;
+  int32 imc = 2;
+  string specialty = 3;
+  repeated string places_of_care = 4;
+  string email = 5;
+  string phone_number = 6;
+  string photo = 7;
+  string password = 8;
+  int32 id = 9;
+
+}
+
+message Empty {
+  string message = 1;
+}
+
+message Login {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginRes {
+  string token = 1;
+  bool is_doctor = 2;
+}
+
+service Registration {
+  rpc CreatePatientProfile(Patient) returns (Empty) {}
+  rpc CreateDoctorProfile(Doctor) returns (Empty) {}
+  rpc DeleteProfile(Empty) returns (Empty) {}
+  rpc Login(Login) returns (LoginRes) {}
+}

@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package monitoring;
+
+message Appointment {
+  string date = 1;
+  string time = 2;
+  string location = 3;
+}
+
+message Medication {
+  string name = 1;
+  string dosage = 2;
+  string frequency = 3;
+}
+
+message Reminder {
+  string message = 1;
+  string time = 2;
+}
+
+message Appointments {
+  repeated Appointment appointments = 1;
+}
+
+message Empty {}
+
+message PatientId {
+  int32 id = 1;
+}
+
+message TestResult {
+  string date = 1;
+  string result = 2;
+}
+
+message Medications {
+  repeated Medication medications = 1;
+}
+
+message Notification {
+  string message = 1;
+  string time = 2;
+}
+
+message Notifications {
+  repeated Notification notifications = 1;
+}
+
+message ChatMessage {
+  string message = 1;
+}
+
+service Monitoring {
+  rpc GetPastAppointments(PatientId) returns (Appointments) {}
+  rpc GetFutureAppointments(PatientId) returns (Appointments) {}
+  rpc GetTestResults(PatientId) returns (TestResult) {}
+  rpc GetMedication(PatientId) returns (Medications) {}
+  rpc SetReminder(Reminder) returns (Empty) {}
+  rpc OpenChat(ChatMessage) returns (stream ChatMessage) {}
+  rpc GetNotifications(Empty) returns (stream Notifications) {}
+}
